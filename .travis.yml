@@ -1,0 +1,9 @@
+# kickstart travis.
+language: java
+
+install: mvn clean install -DskipTests=true
+
+branches:
+  only:
+    - master
+    - develop
