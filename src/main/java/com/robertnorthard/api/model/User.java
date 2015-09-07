@@ -1,5 +1,8 @@
 package com.robertnorthard.api.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 /**
  * This class represents a user
  * @author robertnorthard
@@ -43,6 +46,8 @@ public class User {
     /**
      * @return the firstName
      */
+    @JsonSerialize
+    @JsonProperty("firstname")
     public String getFirstName() {
         return firstName;
     }

@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.robertnorthard.api.util.DBConnection;
+
 /**
  * Expose health status API
  * @author robertnorthard

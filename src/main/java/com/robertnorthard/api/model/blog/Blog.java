@@ -29,13 +29,11 @@ public class Blog implements BlogService {
     }
 
     public List<Post> findAll() {
-        // TODO Auto-generated method stub
-        return null;
+        return dao.findAll();
     }
 
     public Post findById(String id) {
-        // TODO Auto-generated method stub
-        return null;
+        return dao.findById(id);
     }
 
     public Post update(Post post) {

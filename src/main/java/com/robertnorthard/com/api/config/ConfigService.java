@@ -5,15 +5,16 @@ import java.util.Properties;
 import org.apache.log4j.Logger;
 
 /**
- * This class represents a configuration service using the Strategy design pattern.
+ * This class represents a configuration service using the Strategy design
+ * pattern.
  * 
  * @author robertnorthard
  *
  */
-public class ConfigService{
+public class ConfigService {
 
     private static final Logger LOGGER = Logger.getLogger(ConfigService.class);
-    
+
     /**
      * Represents configuration loaders
      */
@@ -31,7 +32,8 @@ public class ConfigService{
         } catch (RuntimeException e) {
             LOGGER.error(e.toString());
         }
-        
+
         return null;
     }
+
 }

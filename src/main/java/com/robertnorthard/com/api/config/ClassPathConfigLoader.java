@@ -6,7 +6,7 @@ import java.util.Properties;
 
 
 /**
- * This class facilitates reading properties from files.
+ * This class facilitates reading properties from files on the class path.
  * 
  * @author robertnorthard
  *

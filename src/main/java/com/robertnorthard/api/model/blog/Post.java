@@ -2,6 +2,10 @@ package com.robertnorthard.api.model.blog;
 
 import java.util.Date;
 
+import org.bson.types.ObjectId;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.robertnorthard.api.model.User;
 
 /**
@@ -11,8 +15,7 @@ import com.robertnorthard.api.model.User;
  */
 public class Post {
 
-    private int id;
-    private String title, body;
+    private String _id, title, body;
     private User author;
     private Date timestamp;
     
@@ -22,33 +25,27 @@ public class Post {
     public Post(){ }
     
     /**
-     * @param id
      * @param title
      * @param body
      * @param author
      * @param timestamp
      */
-    public Post(int id, String title, String body, User author, Date timestamp) {
+    public Post(String title, String body, User author) {
         super();
-        this.id = id;
+        this._id = new ObjectId().toString();
         this.title = title;
         this.body = body;
         this.author = author;
-        this.timestamp = timestamp;
+        this.timestamp = new Date();
     }
     
     /**
-     * @return the id
-     */
-    public int getId() {
-        return id;
-    }
-   
-    /**
      * @return the title
      */
+    @JsonSerialize
+    @JsonProperty("title")
     public String getTitle() {
-        return title;
+        return this.title;
     }
     
     /**
@@ -61,6 +58,8 @@ public class Post {
     /**
      * @return the body
      */
+    @JsonSerialize
+    @JsonProperty("body")
     public String getBody() {
         return body;
     }
@@ -75,6 +74,8 @@ public class Post {
     /**
      * @return the author
      */
+    @JsonSerialize
+    @JsonProperty("author")
     public User getAuthor() {
         return author;
     }
@@ -89,6 +90,8 @@ public class Post {
     /**
      * @return the timestamp
      */
+    @JsonSerialize
+    @JsonProperty("timestamp")
     public Date getTimestamp() {
         return timestamp;
     }
@@ -98,6 +101,22 @@ public class Post {
      */
     public void setTimestamp(Date timestamp) {
         this.timestamp = timestamp;
+    }
+
+    /**
+     * @return the _id
+     */
+    @JsonSerialize
+    @JsonProperty("id")
+    public String get_id() {
+        return _id;
+    }
+
+    /**
+     * @param _id the _id to set
+     */
+    public void set_id(String _id) {
+        this._id = _id;
     }
     
 }
