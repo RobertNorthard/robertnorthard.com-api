@@ -1,5 +1,6 @@
 package com.robertnorthard.api.dao.blog;
 
+import org.apache.log4j.Logger;
 import org.bson.Document;
 
 import com.google.gson.Gson;
@@ -16,19 +17,23 @@ import com.robertnorthard.api.util.DBConnection;
  */
 public class PostDAO {
 
+    private static final Logger LOGGER = Logger.getLogger(PostDAO.class);
+    
+    private MongoClient con = DBConnection.getConnection();
+    
     /**
      * Persist blog post
      * @param post post to persist
      */
     public void create(Post post){
-        MongoClient con = DBConnection.getConnection();
    
         MongoDatabase db = con.getDatabase("blog");
         MongoCollection<Document> json = db.getCollection("posts");
         Document dbObject = Document.parse(new Gson().toJson(post));
-        json.insertOne(dbObject);
         
-        con.close();
+        LOGGER.debug(dbObject.toString());
+        
+        json.insertOne(dbObject);
     }
     
 }

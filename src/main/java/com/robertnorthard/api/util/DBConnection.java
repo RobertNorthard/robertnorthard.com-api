@@ -1,27 +1,32 @@
 package com.robertnorthard.api.util;
 
+import java.util.Properties;
+
 import org.apache.log4j.Logger;
 
 import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
+import com.robertnorthard.com.api.config.ConfigService;
 
 /**
  * This class represents a persistent layers db connection.
+ * 
  * @author robertnorthard
  *
  */
 public class DBConnection {
 
     private static final Logger LOGGER = Logger.getLogger(DBConnection.class);
-    
+
     private static MongoClient client = null;
-    
+
     /**
      * Added explicit private constructor as this is a utility class.
      */
     private DBConnection() {
 
     }
-    
+
     /**
      * Return a database connection object.
      * 
@@ -29,11 +34,20 @@ public class DBConnection {
      */
     public static MongoClient getConnection() {
 
-        client = new MongoClient("192.168.59.103", 27017);
+        Properties properties = ConfigService.getConfig("application.properties");
 
-        return client;
+        if (DBConnection.client == null)
+            synchronized (DBConnection.class) {
+                if (DBConnection.client == null) {
+                    DBConnection.client = new MongoClient(
+                            new MongoClientURI(
+                                    properties.getProperty("mongodb.connection.string")));
+                }
+            }
+
+        return DBConnection.client;
     }
-    
+
     /**
      * Close Connection
      * 
@@ -42,18 +56,22 @@ public class DBConnection {
      */
     public static boolean closeConnection() {
 
-        // Prevent unchecked NullPointerException
-        if (DBConnection.client != null) {
-            try {
-                DBConnection.client.close();
-                return true;
-            } catch (Exception e) {
-                LOGGER.error(e);
-                return false;
+        if (DBConnection.client != null)
+            synchronized (DBConnection.class) {
+                // Prevent unchecked NullPointerException
+                if (DBConnection.client != null) {
+                    try {
+                        DBConnection.client.close();
+                        DBConnection.client = null;
+                        return true;
+                    } catch (Exception e) {
+                        LOGGER.error(e);
+                        return false;
+                    }
+                }
             }
-        }
         // default - failed to close
         return false;
     }
-    
+
 }
