@@ -1,4 +1,4 @@
-package com.robertnorthard.com.api.config;
+package com.robertnorthard.api.config;
 
 import java.io.InputStreamReader;
 import java.io.Reader;

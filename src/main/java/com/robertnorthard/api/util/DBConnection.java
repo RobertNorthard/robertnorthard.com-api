@@ -6,7 +6,7 @@ import org.apache.log4j.Logger;
 
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
-import com.robertnorthard.com.api.config.ConfigService;
+import com.robertnorthard.api.config.ConfigService;
 
 /**
  * This class represents a persistent layers db connection.

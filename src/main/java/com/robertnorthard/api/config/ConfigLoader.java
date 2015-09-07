@@ -1,4 +1,4 @@
-package com.robertnorthard.com.api.config;
+package com.robertnorthard.api.config;
 
 import java.util.Properties;
 
