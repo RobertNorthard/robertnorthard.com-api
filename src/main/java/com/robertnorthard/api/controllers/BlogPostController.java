@@ -31,14 +31,14 @@ public class BlogPostController extends RESTController<Post,String> {
     @RequestMapping(value="/blog/posts", method=RequestMethod.GET)
     public List<Post> listAll() {
         // TODO Auto-generated method stub
-        return blog.findAll();
+        return this.blog.findAll();
     }
 
     @Override
     @RequestMapping(value="/blog/posts", method=RequestMethod.PUT)
-    public Post create(Post json) {
-        // TODO Auto-generated method stub
-        return null;
+    public Post create(@RequestBody Post post) {
+        Post p = new Post(post.getTitle(), post.getBody(), post.getAuthor());
+        return this.blog.createPost(p);
     }
 
     @Override

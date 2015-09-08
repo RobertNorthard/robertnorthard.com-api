@@ -19,8 +19,7 @@ public class Blog implements BlogService {
     
     public Post createPost(Post post) {
         // TODO Auto-generated method stub
-        dao.create(post);
-        return null;
+        return this.dao.create(post);
     }
 
     public boolean deletePost(String id) {
@@ -29,11 +28,11 @@ public class Blog implements BlogService {
     }
 
     public List<Post> findAll() {
-        return dao.findAll();
+        return this.dao.findAll();
     }
 
     public Post findById(String id) {
-        return dao.findById(id);
+        return this.dao.findById(id);
     }
 
     public Post update(String id, Post post) {

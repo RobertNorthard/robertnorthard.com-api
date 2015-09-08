@@ -34,7 +34,7 @@ public class PostDAO {
      * @param post
      *            post to persist
      */
-    public void create(Post post) {
+    public Post create(Post post) {
 
         MongoDatabase db = con.getDatabase("blog");
         MongoCollection<Document> json = db.getCollection("posts");
@@ -43,6 +43,8 @@ public class PostDAO {
         LOGGER.info(dbObject.toString());
 
         json.insertOne(dbObject);
+        
+        return post;
     }
 
     /**
