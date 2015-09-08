@@ -68,7 +68,7 @@ public class PostDAO {
 
         return posts;
     }
-
+ 
     /**
      * Return post for with a specified id
      * 

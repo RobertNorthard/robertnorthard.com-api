@@ -1,5 +1,8 @@
 package com.robertnorthard.api.model;
 
+import org.bson.types.ObjectId;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
@@ -9,9 +12,11 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
  */
 public class User {
     
-    private int id;
-    private String firstName;
-    private String surname;
+    
+    private String _id;
+    private String username;
+    private String displayName;
+    private String[] roles;
 
     /**
      * Default constructor
@@ -24,49 +29,58 @@ public class User {
      * @param firstName the user's firstname
      * @param surname the user's surname
      */
-    public User(int id, String firstName, String surname) {
+    public User(String username) {
         super();
-        this.id = id;
-        this.firstName = firstName;
-        this.surname = surname;
+        this._id = new ObjectId().toString();
+        this.username = username;
     }
     
     /**
      * @return the id
      */
-    public int getId() {
-        return id;
+    @JsonSerialize
+    @JsonProperty("id")
+    public String getId() {
+        return _id;
     }
+
     /**
      * @param id the id to set
      */
-    public void setId(int id) {
-        this.id = id;
+    public void setId(String id) {
+        this._id = id;
     }
+
     /**
-     * @return the firstName
+     * @return the username
      */
-    @JsonSerialize
-    @JsonProperty("firstname")
-    public String getFirstName() {
-        return firstName;
+    public String getUsername() {
+        return username;
     }
+    
     /**
-     * @param firstName the firstName to set
+     * Authenticate user
+     * @param password user's password
+     * @return true if authenticated, else false.
      */
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public boolean authenticate(String password){
+        // TODO add authentication
+        return false;
     }
+
     /**
-     * @return the surname
+     * @return the roles
      */
-    public String getSurname() {
-        return surname;
+    @JsonIgnore
+    public String[] getRoles() {
+        return roles;
     }
+
     /**
-     * @param surname the surname to set
+     * @param roles the roles to set
      */
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setRoles(String[] roles) {
+        this.roles = roles;
     }
+
 }

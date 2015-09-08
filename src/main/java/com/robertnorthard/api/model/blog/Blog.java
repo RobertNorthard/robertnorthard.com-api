@@ -40,5 +40,4 @@ public class Blog implements BlogService {
         // TODO Auto-generated method stub
         return null;
     }
-
 }
