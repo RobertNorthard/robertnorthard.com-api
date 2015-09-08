@@ -36,8 +36,8 @@ public class Blog implements BlogService {
         return dao.findById(id);
     }
 
-    public Post update(Post post) {
+    public Post update(String id, Post post) {
         // TODO Auto-generated method stub
-        return null;
+        return this.dao.update(id, post);
     }
 }

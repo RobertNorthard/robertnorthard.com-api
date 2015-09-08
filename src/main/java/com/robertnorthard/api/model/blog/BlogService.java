@@ -41,5 +41,5 @@ public interface BlogService {
      * @param post post to update
      * @return updated blog post
      */
-    Post update(Post post);
+    Post update(String id, Post post);
 }

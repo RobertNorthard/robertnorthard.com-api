@@ -18,14 +18,14 @@ public abstract class RESTController<T, ID extends Serializable> {
     @RequestMapping(method=RequestMethod.GET)
     public abstract @ResponseBody List<T> listAll();
 
-    @RequestMapping(method=RequestMethod.POST, consumes={MediaType.APPLICATION_JSON_VALUE})
+    @RequestMapping(method=RequestMethod.PUT, consumes={MediaType.APPLICATION_JSON_VALUE})
     public abstract @ResponseBody T create(@RequestBody T json);
 
     @RequestMapping(value="/{id}", method=RequestMethod.GET)
     public abstract @ResponseBody T get(@PathVariable("id") ID id);
 
     @RequestMapping(value="/{id}", method=RequestMethod.POST, consumes={MediaType.APPLICATION_JSON_VALUE})
-    public abstract @ResponseBody Map<String, Object> update(@PathVariable("id") ID id, @RequestBody T json);
+    public abstract @ResponseBody T update(@PathVariable("id") ID id, @RequestBody T json);
     
     @RequestMapping(value="/{id}", method=RequestMethod.DELETE)
     public  abstract @ResponseBody Map<String, Object> delete(@PathVariable("id") ID id);

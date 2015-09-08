@@ -68,17 +68,31 @@ public class PostDAO {
     /**
      * Return post for with a specified id
      * 
-     * @param
+     * @param id the id of the post
      */
     public Post findById(String id) {
 
         MongoDatabase db = con.getDatabase("blog");
         MongoCollection<Document> collection = db.getCollection("posts");
-
-        LOGGER.info("TEST");
         
         return new Gson().fromJson(collection.find(eq("_id", id)).first()
                 .toJson(), Post.class);
 
+    }
+    
+    /**
+     * Update post
+     * 
+     * @param
+     */
+    public Post update(String id, Post post) {
+
+        MongoDatabase db = con.getDatabase("blog");
+        MongoCollection<Document> collection = db.getCollection("posts");
+
+        post.set_id(id);
+        collection.replaceOne(eq("_id", id), Document.parse(new Gson().toJson(post)));
+        
+        return post;
     }
 }

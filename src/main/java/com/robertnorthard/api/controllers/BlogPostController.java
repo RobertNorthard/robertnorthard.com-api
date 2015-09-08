@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -44,14 +45,14 @@ public class BlogPostController extends RESTController<Post,String> {
     @RequestMapping(value="/blog/posts/{id}", method=RequestMethod.GET)
     public Post get(@PathVariable("id") String id) {
         // TODO Auto-generated method stub
-        return blog.findById(id);
+        return this.blog.findById(id);
     }
 
     @Override
-    @RequestMapping(value="/blog/posts/{id}", method=RequestMethod.PUT)
-    public Map<String, Object> update(@PathVariable("id") String id, Post json) {
+    @RequestMapping(value="/blog/posts/{id}", method=RequestMethod.POST)
+    public Post update(@PathVariable("id") String id, @RequestBody Post post) {
         // TODO Auto-generated method stub
-        return null;
+        return this.blog.update(id, post);
     }
 
     @Override
@@ -60,6 +61,4 @@ public class BlogPostController extends RESTController<Post,String> {
         // TODO Auto-generated method stub
         return null;
     }
-
-    
 }
