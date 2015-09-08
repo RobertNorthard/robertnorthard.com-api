@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
-@RequestMapping("/test")
+@RequestMapping("/health")
 public class HealthController {
     @RequestMapping(method=RequestMethod.GET)
     public String health(){
