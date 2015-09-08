@@ -3,14 +3,10 @@ package com.robertnorthard.api.dao.blog;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.management.Query;
-
 import org.apache.log4j.Logger;
 import org.bson.Document;
 
 import com.google.gson.Gson;
-import com.mongodb.BasicDBObject;
-import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
