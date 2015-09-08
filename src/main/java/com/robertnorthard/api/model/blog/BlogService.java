@@ -12,7 +12,7 @@ public interface BlogService {
     /**
      * Create Blog post
      * @param post post to create
-     * @return
+     * @return created blog post
      */
     Post createPost(Post post);
     
