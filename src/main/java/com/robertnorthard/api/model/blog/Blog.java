@@ -2,41 +2,46 @@ package com.robertnorthard.api.model.blog;
 
 import java.util.List;
 
-import org.apache.log4j.Logger;
-
-import com.robertnorthard.api.dao.blog.PostDAO;
+import com.mongodb.client.result.DeleteResult;
 
 /**
- * Implementation for Blog Service
+ * Interface for Blog Service
  * @author robertnorthard
  *
  */
-public class Blog implements BlogService {
-
-    private static final Logger LOGGER = Logger.getLogger(Blog.class);
+public interface Blog {
+   
+    /**
+     * Create Blog post
+     * @param post post to create
+     * @return created blog post
+     */
+    Post createPost(Post post);
     
-    private PostDAO dao = new PostDAO();
+    /**
+     * Delete Blog post
+     * @param id id of post to delete
+     * @return true if deleted, else false
+     */
+    DeleteResult deletePost(String id);
     
-    public Post createPost(Post post) {
-        // TODO Auto-generated method stub
-        return this.dao.create(post);
-    }
-
-    public boolean deletePost(String id) {
-        // TODO Auto-generated method stub
-        return false;
-    }
-
-    public List<Post> findAll() {
-        return this.dao.findAll();
-    }
-
-    public Post findById(String id) {
-        return this.dao.findById(id);
-    }
-
-    public Post update(String id, Post post) {
-        // TODO Auto-generated method stub
-        return this.dao.update(id, post);
-    }
+    /**
+     * Collection of blog posts
+     * @return all blog posts
+     */
+    List<Post> findAll();
+    
+    /**
+     * Return blog post with specified id
+     * @param id if of blog post
+     * @return blog post with specified id
+     */
+    Post findById(String id);
+    
+    /**
+     * Update blog post
+     * @param post post to update
+     * @return updated blog post
+     */
+    Post update(String id, Post post);
 }

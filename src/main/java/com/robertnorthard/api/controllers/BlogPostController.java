@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mongodb.client.result.DeleteResult;
 import com.robertnorthard.api.model.blog.Blog;
 import com.robertnorthard.api.model.blog.BlogService;
 import com.robertnorthard.api.model.blog.Post;
@@ -25,7 +26,7 @@ public class BlogPostController extends RESTController<Post,String> {
     
     private static final Logger LOGGER = Logger.getLogger(BlogPostController.class);
     
-    private BlogService blog = new Blog();
+    private Blog blog = new BlogService();
 
     @Override
     @RequestMapping(value="/blog/posts", method=RequestMethod.GET)
@@ -57,8 +58,7 @@ public class BlogPostController extends RESTController<Post,String> {
 
     @Override
     @RequestMapping(value="/blog/posts/{id}", method=RequestMethod.DELETE)
-    public Map<String, Object> delete(@PathVariable("id") String id) {
-        // TODO Auto-generated method stub
-        return null;
+    public DeleteResult delete(@PathVariable("id") String id) {
+        return this.blog.deletePost(id);
     }
 }

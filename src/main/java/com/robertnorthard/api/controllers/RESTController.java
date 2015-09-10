@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mongodb.client.result.DeleteResult;
+
 @RestController
 public abstract class RESTController<T, ID extends Serializable> {
 
@@ -28,5 +30,5 @@ public abstract class RESTController<T, ID extends Serializable> {
     public abstract @ResponseBody T update(@PathVariable("id") ID id, @RequestBody T json);
     
     @RequestMapping(value="/{id}", method=RequestMethod.DELETE)
-    public  abstract @ResponseBody Map<String, Object> delete(@PathVariable("id") ID id);
+    public  abstract @ResponseBody DeleteResult delete(@PathVariable("id") ID id);
 }

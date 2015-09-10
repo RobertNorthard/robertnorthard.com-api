@@ -11,6 +11,7 @@ import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.result.DeleteResult;
 import com.robertnorthard.api.model.blog.Post;
 import com.robertnorthard.api.util.DBConnection;
 
@@ -71,6 +72,7 @@ public class PostDAO {
      * Return post for with a specified id
      * 
      * @param id the id of the post
+     * @return found post, null if not found.
      */
     public Post findById(String id) {
 
@@ -85,7 +87,9 @@ public class PostDAO {
     /**
      * Update post
      * 
-     * @param
+     * @param id of post to update
+     * @param post post with updated contents
+     * @return update post
      */
     public Post update(String id, Post post) {
 
@@ -96,5 +100,16 @@ public class PostDAO {
         collection.replaceOne(eq("_id", id), Document.parse(new Gson().toJson(post)));
         
         return post;
+    }
+    
+    /**
+     * Delete post with a specified id.
+     * 
+     * @param if of post to delete
+     */
+    public DeleteResult delete(String id) {
+        MongoDatabase db = con.getDatabase("blog");
+        MongoCollection<Document> collection = db.getCollection("posts");
+        return collection.deleteOne(eq("_id", id));
     }
 }
