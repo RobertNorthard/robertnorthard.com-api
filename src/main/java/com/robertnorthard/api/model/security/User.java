@@ -1,9 +1,11 @@
 package com.robertnorthard.api.model.security;
 
-import java.util.Collection;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.bson.types.ObjectId;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -19,13 +21,12 @@ public class User {
     private String _id;
     private String username;
     private String password;
-    private Collection<? extends GrantedAuthority> authorities;
+    private List<SimpleGrantedAuthority> authorities;
 
     /**
      * Default constructor
      */
-    public User() {
-    }
+    public User() { }
 
     /**
      * Constructor for class user
@@ -42,6 +43,7 @@ public class User {
         this._id = new ObjectId().toString();
         this.username = username;
         this.password = password;
+        this.authorities = new ArrayList<SimpleGrantedAuthority>();
     }
 
     /**
@@ -56,6 +58,8 @@ public class User {
      * @param password
      *            the password to set
      */
+    @JsonSerialize
+    @JsonProperty("password")
     public void setPassword(String password) {
         this.password = password;
     }
@@ -63,7 +67,7 @@ public class User {
     /**
      * @return the authorities
      */
-    public Collection<? extends GrantedAuthority> getAuthorities() {
+    public List<SimpleGrantedAuthority> getAuthorities() {
         return this.authorities;
     }
 
@@ -71,9 +75,20 @@ public class User {
      * @param authorities
      *            the authorities to set
      */
+    @JsonSerialize
+    @JsonProperty("authorities")
     public void setAuthorities(
-            Collection<? extends GrantedAuthority> authorities) {
+            List<SimpleGrantedAuthority> authorities) {
         this.authorities = authorities;
+    }
+    
+
+    /**
+     * @param authority
+     *            the authority to add
+     */
+    public void addAuthority(SimpleGrantedAuthority authority) {
+        this.authorities.add(authority);
     }
 
     /**
@@ -96,6 +111,8 @@ public class User {
     /**
      * @return the username
      */
+    @JsonSerialize
+    @JsonProperty("username")
     public String getUsername() {
         return username;
     }
