@@ -22,11 +22,13 @@ public class AuthController {
     @RequestMapping(value="/auth", method=RequestMethod.PUT)
     public User login(@RequestBody User user, HttpServletResponse response) {
         
-        User usr = this.userService.findByUsername(user.getUsername());
+        User userDetails = this.userService.authenticate(user);
 
-        if (usr != null && user.getPassword().equals(usr.getPassword()))
-            return usr;
+        // User has successfully authenticated
+        if (userDetails != null)
+            return userDetails;
             
+        // Failed to authenticate user
         response.setStatus(HttpServletResponse.SC_FORBIDDEN);
         return null;
     }
