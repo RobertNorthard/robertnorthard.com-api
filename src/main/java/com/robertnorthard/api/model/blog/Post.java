@@ -6,7 +6,7 @@ import org.bson.types.ObjectId;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.robertnorthard.api.model.User;
+import com.robertnorthard.api.model.security.User;
 
 /**
  * This class represents a blog post

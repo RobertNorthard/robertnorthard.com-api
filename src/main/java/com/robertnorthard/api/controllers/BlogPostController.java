@@ -20,7 +20,6 @@ import com.robertnorthard.api.controllers.RESTController;
  * Expose Blog Post API
  * @author robertnorthard
  */
-
 @RestController
 public class BlogPostController extends RESTController<Post,String> {
     

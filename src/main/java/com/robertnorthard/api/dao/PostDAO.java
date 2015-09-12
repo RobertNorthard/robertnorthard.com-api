@@ -1,4 +1,4 @@
-package com.robertnorthard.api.dao.blog;
+package com.robertnorthard.api.dao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +41,7 @@ public class PostDAO {
         MongoCollection<Document> json = db.getCollection("posts");
         Document dbObject = Document.parse(new Gson().toJson(post));
 
-        LOGGER.info(dbObject.toString());
+        LOGGER.debug(dbObject.toString());
 
         json.insertOne(dbObject);
         
@@ -61,7 +61,7 @@ public class PostDAO {
         FindIterable<Document> iterable = json.find();
 
         for (Document document : iterable) {
-            LOGGER.info(document.toJson());
+            LOGGER.debug(document.toJson());
             posts.add(new Gson().fromJson(document.toJson(), Post.class));
         }
 

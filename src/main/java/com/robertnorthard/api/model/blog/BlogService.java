@@ -5,7 +5,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import com.mongodb.client.result.DeleteResult;
-import com.robertnorthard.api.dao.blog.PostDAO;
+import com.robertnorthard.api.dao.PostDAO;
 
 /**
  * Implementation for Blog Service
