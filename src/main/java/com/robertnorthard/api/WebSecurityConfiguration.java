@@ -32,6 +32,7 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests().antMatchers("/health").hasRole("ADMIN")
                 .antMatchers(HttpMethod.GET, "/api/blog/posts").anonymous()
+                .antMatchers(HttpMethod.PUT, "/api/auth").anonymous()
                 .and().csrf().disable().httpBasic();
     }
 
