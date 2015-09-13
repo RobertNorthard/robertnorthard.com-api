@@ -1,7 +1,6 @@
 package com.robertnorthard.api.controllers;
 
 import java.util.List;
-import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.springframework.web.bind.annotation.PathVariable;
