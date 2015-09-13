@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.bson.types.ObjectId;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -16,11 +16,9 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
  * 
  * @author robertnorthard
  */
-public class User {
+public class User implements UserDetails {
 
-    private String _id;
-    private String username;
-    private String password;
+    private String _id, username, password, displayName;
     private List<SimpleGrantedAuthority> authorities;
 
     /**
@@ -45,6 +43,21 @@ public class User {
         this.password = password;
         this.authorities = new ArrayList<SimpleGrantedAuthority>();
     }
+    
+    /**
+     * @return the displayName
+     */
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    /**
+     * @param displayName the displayName to set
+     */
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
+    }
+
 
     /**
      * @return the password
@@ -115,5 +128,29 @@ public class User {
     @JsonProperty("username")
     public String getUsername() {
         return username;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        // TODO 
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+     // TODO 
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+     // TODO 
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+     // TODO 
+        return true;
     }
 }
