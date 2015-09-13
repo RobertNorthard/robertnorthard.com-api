@@ -8,7 +8,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
-import com.robertnorthard.api.service.UserDetailsServiceImpl;
+import com.robertnorthard.api.service.UserService;
 
 /**
  * Global Authentication Adapter
@@ -21,7 +21,7 @@ class WebSecurityConfiguration extends GlobalAuthenticationConfigurerAdapter {
 
     @Override
     public void init(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(new UserDetailsServiceImpl());
+        auth.userDetailsService(new UserService());
     }
 }
 
