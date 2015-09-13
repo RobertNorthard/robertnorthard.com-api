@@ -8,7 +8,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
-import com.robertnorthard.api.model.security.UserDetailsServiceImpl;
+import com.robertnorthard.api.service.UserDetailsServiceImpl;
 
 /**
  * Global Authentication Adapter

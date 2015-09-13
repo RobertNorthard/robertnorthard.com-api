@@ -1,4 +1,4 @@
-package com.robertnorthard.api.model.security;
+package com.robertnorthard.api.service;
 
 import java.util.Collection;
 
@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import com.robertnorthard.api.service.UserService;
+import com.robertnorthard.api.model.security.User;
 
 public class UserDetailsServiceImpl implements UserDetailsService {
 
