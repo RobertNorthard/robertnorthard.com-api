@@ -41,10 +41,12 @@ public class UserService implements UserDetailsService {
     public User authenticate(User user) {
         User usr = this.dao.findByUsername(user.getUsername());
 
-        if (usr != null && user.getPassword().equals(usr.getPassword()))
+        if (usr != null && user.getPassword().equals(usr.getPassword())) {
             return usr;
-        else
+        } else {
+            LOGGER.debug(String.format("Authentication failed for user- [%s]", user.getUsername()));
             return null;
+        }
     }
 
     /**
