@@ -19,6 +19,7 @@ import com.robertnorthard.api.model.security.UserDetailsServiceImpl;
 @Configuration
 class WebSecurityConfiguration extends GlobalAuthenticationConfigurerAdapter {
 
+    @Override
     public void init(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(new UserDetailsServiceImpl());
     }
