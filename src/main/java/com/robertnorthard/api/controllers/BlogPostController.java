@@ -14,6 +14,7 @@ import com.mongodb.client.result.DeleteResult;
 import com.robertnorthard.api.model.blog.Blog;
 import com.robertnorthard.api.model.blog.BlogService;
 import com.robertnorthard.api.model.blog.Post;
+import com.robertnorthard.api.model.security.User;
 import com.robertnorthard.api.controllers.RESTController;
 
 /**
@@ -30,7 +31,6 @@ public class BlogPostController extends RESTController<Post,String> {
     @Override
     @RequestMapping(value="/blog/posts", method=RequestMethod.GET)
     public List<Post> listAll() {
-        // TODO Auto-generated method stub
         return this.blog.findAll();
     }
 
@@ -44,14 +44,17 @@ public class BlogPostController extends RESTController<Post,String> {
     @Override
     @RequestMapping(value="/blog/posts/{id}", method=RequestMethod.GET)
     public Post get(@PathVariable("id") String id) {
-        // TODO Auto-generated method stub
         return this.blog.findById(id);
+    }
+    
+    @RequestMapping(value="/blog/posts/{id}/authors", method=RequestMethod.GET)
+    public User  findAuthorByPost(@PathVariable("id") String id) {
+        return this.blog.findById(id).getAuthor();
     }
 
     @Override
     @RequestMapping(value="/blog/posts/{id}", method=RequestMethod.POST)
     public Post update(@PathVariable("id") String id, @RequestBody Post post) {
-        // TODO Auto-generated method stub
         return this.blog.update(id, post);
     }
 
