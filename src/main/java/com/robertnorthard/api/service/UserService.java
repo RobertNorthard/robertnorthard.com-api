@@ -1,4 +1,4 @@
-package com.robertnorthard.api.model.blog;
+package com.robertnorthard.api.service;
 
 import com.robertnorthard.api.dao.UserDAO;
 import com.robertnorthard.api.model.security.User;

@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.robertnorthard.api.model.blog.UserService;
 import com.robertnorthard.api.model.security.User;
+import com.robertnorthard.api.service.UserService;
 
 /**
  * Expose Auth API

@@ -1,8 +1,9 @@
-package com.robertnorthard.api.model.blog;
+package com.robertnorthard.api.service.blog;
 
 import java.util.List;
 
 import com.mongodb.client.result.DeleteResult;
+import com.robertnorthard.api.model.blog.Post;
 
 /**
  * Interface for Blog Service
