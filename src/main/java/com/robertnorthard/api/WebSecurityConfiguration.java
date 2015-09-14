@@ -31,9 +31,12 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/health").hasRole("ADMIN")
-                .antMatchers(HttpMethod.GET, "/api/blog/posts").anonymous()
-                .antMatchers(HttpMethod.PUT, "/api/auth").anonymous()
+        
+        // TODO CORS/TIDY
+        http.authorizeRequests().antMatchers(HttpMethod.GET, "/health").hasAnyRole("ADMIN")
+                .antMatchers(HttpMethod.GET, "/blog/posts").permitAll()
+                .antMatchers(HttpMethod.PUT, "/auth").permitAll()
+                .antMatchers(HttpMethod.OPTIONS,"/**").permitAll()
                 .and().csrf().disable().httpBasic();
     }
 
