@@ -33,8 +33,9 @@ public class UserDAO {
 
         MongoDatabase db = con.getDatabase("blog");
         Document document = db.getCollection("users").find(eq("username", username)).first();
-
+        
         if (document != null){
+            LOGGER.debug(document.toJson());
             return new Gson().fromJson(document.toJson(), User.class);
         }
         

@@ -23,8 +23,6 @@ import com.robertnorthard.api.controllers.RESTController;
 @RestController
 public class BlogPostController extends RESTController<Post,String> {
     
-    private static final Logger LOGGER = Logger.getLogger(BlogPostController.class);
-    
     private Blog blog = new BlogService();
 
     @Override
