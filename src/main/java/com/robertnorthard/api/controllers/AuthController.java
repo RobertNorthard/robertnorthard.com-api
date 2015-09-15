@@ -2,11 +2,13 @@ package com.robertnorthard.api.controllers;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.robertnorthard.api.dao.PostDAO;
 import com.robertnorthard.api.model.security.User;
 import com.robertnorthard.api.service.UserService;
 
@@ -27,7 +29,7 @@ public class AuthController {
         // User has successfully authenticated
         if (userDetails != null)
             return userDetails;
-            
+        
         // Failed to authenticate user
         response.setStatus(HttpServletResponse.SC_FORBIDDEN);
         return null;

@@ -17,7 +17,7 @@ import com.mongodb.client.result.DeleteResult;
 public abstract class RESTController<T, ID extends Serializable> {
 
     @RequestMapping(method=RequestMethod.GET)
-    public abstract @ResponseBody List<T> listAll();
+    public abstract @ResponseBody List<T> get();
 
     @RequestMapping(method=RequestMethod.PUT, consumes={MediaType.APPLICATION_JSON_VALUE})
     public abstract @ResponseBody T create(@RequestBody T json);

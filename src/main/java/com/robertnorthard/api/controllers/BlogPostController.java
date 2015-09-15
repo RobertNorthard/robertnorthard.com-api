@@ -2,7 +2,6 @@ package com.robertnorthard.api.controllers;
 
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,7 +26,7 @@ public class BlogPostController extends RESTController<Post,String> {
 
     @Override
     @RequestMapping(value="/blog/posts", method=RequestMethod.GET)
-    public List<Post> listAll() {
+    public List<Post> get() {
         return this.blog.findAll();
     }
 
