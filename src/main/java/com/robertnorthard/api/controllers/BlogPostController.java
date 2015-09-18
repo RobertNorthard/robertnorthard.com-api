@@ -41,6 +41,7 @@ public class BlogPostController extends RESTController<Post, String> {
     @RequestMapping(value = "/blog/posts", method = RequestMethod.PUT)
     public HttpResponse<Post> create(@RequestBody Post post) {
         Post p = new Post(post.getTitle(), post.getBody(), post.getAuthor());
+        this.blog.createPost(p);
         HttpResponse<Post> httpResponse = new HttpResponse<Post>();
         httpResponse.setData(p);
         return httpResponse;
