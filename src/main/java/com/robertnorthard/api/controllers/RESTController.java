@@ -3,6 +3,8 @@ package com.robertnorthard.api.controllers;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,11 +25,11 @@ public abstract class RESTController<T, ID extends Serializable> {
     public abstract @ResponseBody T create(@RequestBody T json);
 
     @RequestMapping(value="/{id}", method=RequestMethod.GET)
-    public abstract @ResponseBody T get(@PathVariable("id") ID id);
+    public abstract @ResponseBody T findById(@PathVariable("id") ID id, HttpServletResponse response);
 
     @RequestMapping(value="/{id}", method=RequestMethod.POST, consumes={MediaType.APPLICATION_JSON_VALUE})
-    public abstract @ResponseBody T update(@PathVariable("id") ID id, @RequestBody T json);
+    public abstract @ResponseBody T update(@PathVariable("id") ID id, @RequestBody T json, HttpServletResponse response);
     
     @RequestMapping(value="/{id}", method=RequestMethod.DELETE)
-    public  abstract @ResponseBody DeleteResult delete(@PathVariable("id") ID id);
+    public  abstract @ResponseBody DeleteResult delete(@PathVariable("id") ID id, HttpServletResponse response);
 }
