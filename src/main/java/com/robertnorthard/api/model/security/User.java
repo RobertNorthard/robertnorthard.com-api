@@ -80,6 +80,7 @@ public class User implements UserDetails {
     /**
      * @return the authorities
      */
+    @JsonIgnore
     public List<SimpleGrantedAuthority> getAuthorities() {
         return this.authorities;
     }
@@ -131,24 +132,28 @@ public class User implements UserDetails {
     }
 
     @Override
+    @JsonIgnore
     public boolean isAccountNonExpired() {
         // TODO 
         return true;
     }
 
     @Override
+    @JsonIgnore
     public boolean isAccountNonLocked() {
      // TODO 
         return true;
     }
 
     @Override
+    @JsonIgnore
     public boolean isCredentialsNonExpired() {
      // TODO 
         return true;
     }
 
     @Override
+    @JsonIgnore
     public boolean isEnabled() {
      // TODO 
         return true;
