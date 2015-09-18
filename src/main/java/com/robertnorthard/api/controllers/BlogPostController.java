@@ -16,65 +16,119 @@ import com.robertnorthard.api.model.security.User;
 import com.robertnorthard.api.service.blog.Blog;
 import com.robertnorthard.api.service.blog.BlogService;
 import com.robertnorthard.api.controllers.RESTController;
+import com.robertnorthard.api.dto.HttpResponse;
+import com.robertnorthard.api.dto.HttpResponseError;
 
 /**
  * Expose Blog Post API
+ * 
  * @author robertnorthard
  */
 @RestController
-public class BlogPostController extends RESTController<Post,String> {
-    
+public class BlogPostController extends RESTController<Post, String> {
+
     private Blog blog = new BlogService();
 
     @Override
-    @RequestMapping(value="/blog/posts", method=RequestMethod.GET)
-    public List<Post> get() {
-        return this.blog.findAll();
+    @RequestMapping(value = "/blog/posts", method = RequestMethod.GET)
+    public HttpResponse<List<Post>> get() {
+        HttpResponse<List<Post>> httpResponse = new HttpResponse<List<Post>>();
+        httpResponse.setData(this.blog.findAll());
+        return httpResponse;
     }
 
     @Override
-    @RequestMapping(value="/blog/posts", method=RequestMethod.PUT)
-    public Post create(@RequestBody Post post) {
+    @RequestMapping(value = "/blog/posts", method = RequestMethod.PUT)
+    public HttpResponse<Post> create(@RequestBody Post post) {
         Post p = new Post(post.getTitle(), post.getBody(), post.getAuthor());
-        return this.blog.createPost(p);
+        HttpResponse<Post> httpResponse = new HttpResponse<Post>();
+        httpResponse.setData(p);
+        return httpResponse;
     }
 
     @Override
-    @RequestMapping(value="/blog/posts/{id}", method=RequestMethod.GET)
-    public Post findById(@PathVariable("id") String id, HttpServletResponse response) {
+    @RequestMapping(value = "/blog/posts/{id}", method = RequestMethod.GET)
+    public HttpResponse<Post> findById(@PathVariable("id") String id,
+            HttpServletResponse response) {
+
+        HttpResponse<Post> httpResponse = new HttpResponse<Post>();
+
         Post post = this.blog.findById(id);
-        
-        if (post != null) return post;
-        
+
+        if (post != null) {
+            httpResponse.setData(post);
+            return httpResponse;
+        }
+
         response.setStatus(HttpServletResponse.SC_NOT_FOUND);
-        return null;
+        httpResponse.setError(new HttpResponseError(
+                HttpServletResponse.SC_NOT_FOUND, "Post Not Found",
+                "Blog post with id " + id + " not found"));
+
+        return httpResponse;
     }
-    
-    @RequestMapping(value="/blog/posts/{id}/authors", method=RequestMethod.GET)
-    public User findAuthorByPost(@PathVariable("id") String id, HttpServletResponse response) {
-        
-        if (this.blog.findById(id) != null){
-            return this.blog.findById(id).getAuthor();
-        }else{
-            response.setStatus(HttpServletResponse.SC_NOT_FOUND);
-            return null;
+
+    @RequestMapping(value = "/blog/posts/{id}/authors", method = RequestMethod.GET)
+    public HttpResponse<User> findAuthorByPost(@PathVariable("id") String id,
+            HttpServletResponse response) {
+
+        HttpResponse<User> httpResponse = new HttpResponse<User>();
+
+        Post post = this.blog.findById(id);
+
+        if (post != null) {
+            httpResponse.setData(post.getAuthor());
+            return httpResponse;
         }
+
+        response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+        httpResponse.setError(new HttpResponseError(
+                HttpServletResponse.SC_NOT_FOUND, "Post Not Found",
+                "Blog post with id " + id + " not found"));
+
+        return httpResponse;
     }
 
     @Override
-    @RequestMapping(value="/blog/posts/{id}", method=RequestMethod.POST)
-    public Post update(@PathVariable("id") String id, @RequestBody Post post, HttpServletResponse response) {
-        return this.blog.update(id, post);
+    @RequestMapping(value = "/blog/posts/{id}", method = RequestMethod.POST)
+    public HttpResponse<Post> update(@PathVariable("id") String id,
+            @RequestBody Post post, HttpServletResponse response) {
+        HttpResponse<Post> httpResponse = new HttpResponse<Post>();
+
+        Post p = this.blog.findById(id);
+
+        if (post != null) {
+            httpResponse.setData(this.blog.update(id, p));
+            return httpResponse;
+        }
+
+        response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+        httpResponse.setError(new HttpResponseError(
+                HttpServletResponse.SC_NOT_FOUND, "Post Not Found",
+                "Blog post with id " + id + " not found"));
+
+        return httpResponse;
     }
 
     @Override
-    @RequestMapping(value="/blog/posts/{id}", method=RequestMethod.DELETE)
-    public DeleteResult delete(@PathVariable("id") String id, HttpServletResponse response) {
-        if (this.blog.findById(id) != null){
-            return this.blog.deletePost(id);
-        }else{
-            response.setStatus(HttpServletResponse.SC_NOT_FOUND);
-            return null;
+    @RequestMapping(value = "/blog/posts/{id}", method = RequestMethod.DELETE)
+    public HttpResponse<Post> delete(@PathVariable("id") String id,
+            HttpServletResponse response) {
+        HttpResponse<Post> httpResponse = new HttpResponse<Post>();
+
+        Post post = this.blog.findById(id);
+
+        if (post != null) {
+            this.blog.deletePost(id);
+            httpResponse.setStatus("Blog post with id " + id + " deleted.");
+            return httpResponse;
         }
+
+        response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+        httpResponse.setError(new HttpResponseError(
+                HttpServletResponse.SC_NOT_FOUND, "Post Not Found",
+                "Blog post with id " + id + " not found"));
+
+        return httpResponse;
     }
 }

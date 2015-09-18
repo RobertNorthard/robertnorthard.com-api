@@ -13,23 +13,23 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mongodb.client.result.DeleteResult;
+import com.robertnorthard.api.dto.HttpResponse;
 
 @RestController
 public abstract class RESTController<T, ID extends Serializable> {
 
     @RequestMapping(method=RequestMethod.GET)
-    public abstract @ResponseBody List<T> get();
+    public abstract @ResponseBody HttpResponse<List<T>> get();
 
     @RequestMapping(method=RequestMethod.PUT, consumes={MediaType.APPLICATION_JSON_VALUE})
-    public abstract @ResponseBody T create(@RequestBody T json);
+    public abstract @ResponseBody HttpResponse<T> create(@RequestBody T json);
 
     @RequestMapping(value="/{id}", method=RequestMethod.GET)
-    public abstract @ResponseBody T findById(@PathVariable("id") ID id, HttpServletResponse response);
+    public abstract @ResponseBody HttpResponse<T> findById(@PathVariable("id") ID id, HttpServletResponse response);
 
     @RequestMapping(value="/{id}", method=RequestMethod.POST, consumes={MediaType.APPLICATION_JSON_VALUE})
-    public abstract @ResponseBody T update(@PathVariable("id") ID id, @RequestBody T json, HttpServletResponse response);
+    public abstract @ResponseBody HttpResponse<T> update(@PathVariable("id") ID id, @RequestBody T json, HttpServletResponse response);
     
     @RequestMapping(value="/{id}", method=RequestMethod.DELETE)
-    public  abstract @ResponseBody DeleteResult delete(@PathVariable("id") ID id, HttpServletResponse response);
+    public  abstract @ResponseBody HttpResponse<T> delete(@PathVariable("id") ID id, HttpServletResponse response);
 }
