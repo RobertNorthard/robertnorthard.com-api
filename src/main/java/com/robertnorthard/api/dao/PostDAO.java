@@ -78,10 +78,9 @@ public class PostDAO {
 
         MongoDatabase db = con.getDatabase("blog");
         MongoCollection<Document> collection = db.getCollection("posts");
+        Document document = collection.find(eq("_id", id)).first();
         
-        return new Gson().fromJson(collection.find(eq("_id", id)).first()
-                .toJson(), Post.class);
-
+        return document == null ? null : new Gson().fromJson(document.toJson(), Post.class);
     }
     
     /**
