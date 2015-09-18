@@ -41,7 +41,7 @@ public class DBConnection {
                 if (DBConnection.client == null) {
                     DBConnection.client = new MongoClient(
                             new MongoClientURI(
-                                    properties.getProperty("mongodb.connection.string")));
+                                    properties.getProperty("mongo.connection.string")));
                 }
             }
 
