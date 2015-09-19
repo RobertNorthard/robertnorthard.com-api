@@ -1,14 +1,25 @@
 package com.robertnorthard.api.dto;
 
+import java.util.Date;
+
 public class HttpResponseError {
 
     private int status;
     private String title, detail;
+    private Date timestamp;
     
     public HttpResponseError(int status, String title, String detail){
         this.status = status;
         this.title = title;
         this.detail = detail;
+        this.timestamp = new Date();
+    }
+    
+    /**
+     * @return timestamp of error message/
+     */
+    public Date getTimestamp(){
+        return this.timestamp;
     }
     
     /**

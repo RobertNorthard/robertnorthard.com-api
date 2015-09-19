@@ -24,7 +24,7 @@ public interface Blog {
      * @param id id of post to delete
      * @return true if deleted, else false
      */
-    DeleteResult deletePost(String id);
+    boolean deletePost(String id);
     
     /**
      * Collection of blog posts

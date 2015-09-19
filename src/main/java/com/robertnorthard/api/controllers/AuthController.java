@@ -2,11 +2,13 @@ package com.robertnorthard.api.controllers;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.robertnorthard.api.dao.UserDAO;
 import com.robertnorthard.api.dto.HttpResponse;
 import com.robertnorthard.api.dto.HttpResponseError;
 import com.robertnorthard.api.model.security.User;
@@ -18,6 +20,8 @@ import com.robertnorthard.api.service.UserService;
  */
 @RestController
 public class AuthController {
+    
+    private static final Logger LOGGER = Logger.getLogger(AuthController.class);
     
     private UserService userService = new UserService();
 
@@ -34,6 +38,8 @@ public class AuthController {
         }
         
         // Failed to authenticate user
+        LOGGER.warn(String.format("Authentication failed for user - [%s]", user.getUsername()));
+        
         response.setStatus(HttpServletResponse.SC_FORBIDDEN);
         
         httpResponse.setError(new HttpResponseError(

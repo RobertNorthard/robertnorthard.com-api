@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mongodb.client.result.DeleteResult;
 import com.robertnorthard.api.model.blog.Post;
 import com.robertnorthard.api.model.security.User;
 import com.robertnorthard.api.service.blog.Blog;

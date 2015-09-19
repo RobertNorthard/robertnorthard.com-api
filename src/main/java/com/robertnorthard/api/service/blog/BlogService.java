@@ -19,7 +19,7 @@ public class BlogService implements Blog {
         return this.dao.create(post);
     }
 
-    public DeleteResult deletePost(String id) {
+    public boolean deletePost(String id) {
         return this.dao.delete(id);
     }
 

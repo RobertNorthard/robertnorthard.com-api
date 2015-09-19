@@ -106,9 +106,9 @@ public class PostDAO {
      * 
      * @param if of post to delete
      */
-    public DeleteResult delete(String id) {
+    public boolean delete(String id) {
         MongoDatabase db = con.getDatabase("blog");
         MongoCollection<Document> collection = db.getCollection("posts");
-        return collection.deleteOne(eq("_id", id));
+        return collection.deleteOne(eq("_id", id)) != null ? true : false;
     }
 }
