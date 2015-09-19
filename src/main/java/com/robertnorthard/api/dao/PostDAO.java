@@ -11,7 +11,6 @@ import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import com.mongodb.client.result.DeleteResult;
 import com.robertnorthard.api.model.blog.Post;
 import com.robertnorthard.api.util.DBConnection;
 

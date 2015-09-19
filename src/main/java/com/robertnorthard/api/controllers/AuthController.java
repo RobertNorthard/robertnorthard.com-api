@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.robertnorthard.api.dao.UserDAO;
 import com.robertnorthard.api.dto.HttpResponse;
 import com.robertnorthard.api.dto.HttpResponseError;
 import com.robertnorthard.api.model.security.User;

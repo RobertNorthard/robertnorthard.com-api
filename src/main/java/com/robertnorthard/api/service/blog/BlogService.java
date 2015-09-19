@@ -2,7 +2,6 @@ package com.robertnorthard.api.service.blog;
 
 import java.util.List;
 
-import com.mongodb.client.result.DeleteResult;
 import com.robertnorthard.api.dao.PostDAO;
 import com.robertnorthard.api.model.blog.Post;
 
