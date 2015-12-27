@@ -1,6 +1,7 @@
 package com.robertnorthard.api.controllers;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.web.bind.annotation.RequestBody;

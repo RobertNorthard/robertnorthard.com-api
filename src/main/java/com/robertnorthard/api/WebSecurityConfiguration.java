@@ -31,15 +31,16 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        
-        // TODO CORS/TIDY
-        http.authorizeRequests().antMatchers(HttpMethod.GET, "/health").hasRole("ADMIN")
-                .antMatchers(HttpMethod.GET, "/blog/posts").permitAll()
-                .antMatchers(HttpMethod.PUT, "/blog/posts/**").hasRole("ADMIN")
-                .antMatchers(HttpMethod.DELETE, "/blog/posts/**").hasRole("ADMIN")
-                .antMatchers(HttpMethod.PUT, "/auth").permitAll()
-                .antMatchers(HttpMethod.OPTIONS,"/**").permitAll()
-                .and().csrf().disable().httpBasic();
-    }
 
+        // TODO CORS/TIDY
+        http.authorizeRequests().antMatchers(HttpMethod.GET, "/health")
+                .hasRole("ADMIN").antMatchers(HttpMethod.GET, "/blog/posts")
+                .permitAll().antMatchers(HttpMethod.PUT, "/blog/posts/**")
+                .hasRole("ADMIN")
+                .antMatchers(HttpMethod.DELETE, "/blog/posts/**")
+                .hasRole("ADMIN").antMatchers(HttpMethod.PUT, "/auth")
+                .permitAll().antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                .and().csrf().disable()
+                .httpBasic().and().logout();
+    }
 }

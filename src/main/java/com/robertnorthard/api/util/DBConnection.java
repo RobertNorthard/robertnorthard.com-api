@@ -18,7 +18,7 @@ public class DBConnection {
 
     private static final Logger LOGGER = Logger.getLogger(DBConnection.class);
 
-    private static MongoClient client = null;
+    private static volatile MongoClient client = null;
 
     /**
      * Added explicit private constructor as this is a utility class.
