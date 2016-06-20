@@ -3,6 +3,7 @@ package com.robertnorthard.api.service.blog;
 import java.util.List;
 
 import com.robertnorthard.api.dao.PostDAO;
+import com.robertnorthard.api.dao.EntityDao;
 import com.robertnorthard.api.model.blog.Post;
 
 /**
@@ -10,16 +11,16 @@ import com.robertnorthard.api.model.blog.Post;
  * @author robertnorthard
  *
  */
-public class BlogService implements Blog {
+public class BlogService implements BlogFacade {
 
     private PostDAO dao = new PostDAO();
     
     public Post createPost(Post post) {
-        return this.dao.create(post);
+        return this.dao.persistEntity(post);
     }
 
-    public boolean deletePost(String id) {
-        return this.dao.delete(id);
+    public void deletePost(String id) {
+        this.dao.deleteEntityById(id);
     }
 
     public List<Post> findAll() {
@@ -27,7 +28,7 @@ public class BlogService implements Blog {
     }
 
     public Post findById(String id) {
-        return this.dao.findById(id);
+        return this.dao.findEntityById(id);
     }
 
     public Post update(String id, Post post) {

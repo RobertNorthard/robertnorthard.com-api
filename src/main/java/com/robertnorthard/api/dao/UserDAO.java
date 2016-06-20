@@ -17,11 +17,9 @@ import static com.mongodb.client.model.Filters.*;
  * @author robertnorthard
  *
  */
-public class UserDAO {
+public class UserDAO extends MongoEntityDaoImpl<String,User> {
 
     private static final Logger LOGGER = Logger.getLogger(UserDAO.class);
-
-    private MongoClient con = DBConnection.getConnection();
 
     /**
      * Return post for with a specified id
@@ -31,8 +29,8 @@ public class UserDAO {
      */
     public User findByUsername(String username) {
 
-        MongoDatabase db = con.getDatabase("blog");
-        Document document = db.getCollection("users").find(eq("username", username)).first();
+        MongoDatabase db = this.getConnection().getDatabase("blog");
+        Document document = db.getCollection(this.getCollectionName()).find(eq("username", username)).first();
         
         if (document != null){
             LOGGER.debug(document.toJson());

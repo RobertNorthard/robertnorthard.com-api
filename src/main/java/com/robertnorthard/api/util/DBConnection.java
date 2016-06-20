@@ -44,7 +44,7 @@ public class DBConnection {
                                     properties.getProperty("mongo.connection.string")));
                 }
             }
-
+       
         return DBConnection.client;
     }
 

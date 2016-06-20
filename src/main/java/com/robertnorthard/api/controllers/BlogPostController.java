@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.robertnorthard.api.model.blog.Post;
 import com.robertnorthard.api.model.security.User;
-import com.robertnorthard.api.service.blog.Blog;
+import com.robertnorthard.api.service.blog.BlogFacade;
 import com.robertnorthard.api.service.blog.BlogService;
 import com.robertnorthard.api.controllers.RESTController;
 import com.robertnorthard.api.dto.HttpResponse;
@@ -26,7 +26,7 @@ import com.robertnorthard.api.dto.HttpResponseError;
 @RestController
 public class BlogPostController extends RESTController<Post, String> {
 
-    private Blog blog = new BlogService();
+    private BlogFacade blog = new BlogService();
 
     @Override
     @RequestMapping(value = "/blog/posts", method = RequestMethod.GET)

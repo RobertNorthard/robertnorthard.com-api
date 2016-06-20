@@ -9,21 +9,20 @@ import com.robertnorthard.api.model.blog.Post;
  * @author robertnorthard
  *
  */
-public interface Blog {
+public interface BlogFacade {
    
     /**
      * Create Blog post
      * @param post post to create
-     * @return created blog post
+     * @return created post.
      */
     Post createPost(Post post);
     
     /**
      * Delete Blog post
      * @param id id of post to delete
-     * @return true if deleted, else false
      */
-    boolean deletePost(String id);
+    void deletePost(String id);
     
     /**
      * Collection of blog posts
@@ -41,7 +40,6 @@ public interface Blog {
     /**
      * Update blog post
      * @param post post to update
-     * @return updated blog post
      */
     Post update(String id, Post post);
 }
