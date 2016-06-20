@@ -81,7 +81,7 @@ public class MongoEntityDaoImpl<K, V> implements EntityDao<K, V> {
     * @Return database collection name.
     */
     public String getCollectionName(){
-        return persistentClass.getName().toLowerCase() + "s";
+        return persistentClass.getSimpleName().toLowerCase() + "s";
     }
     
 
