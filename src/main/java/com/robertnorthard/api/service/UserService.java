@@ -2,7 +2,6 @@ package com.robertnorthard.api.service;
 
 import org.apache.log4j.Logger;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import com.robertnorthard.api.dao.UserDAO;
@@ -15,7 +14,7 @@ import com.robertnorthard.api.util.AuthenticationUtils;
  * @author robertnorthard
  *
  */
-public class UserService implements UserDetailsService {
+public class UserService implements UserFacade {
 
     private static final Logger LOGGER = Logger.getLogger(UserService.class);
 
