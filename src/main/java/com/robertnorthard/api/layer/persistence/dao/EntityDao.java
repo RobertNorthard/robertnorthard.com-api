@@ -1,4 +1,4 @@
-package com.robertnorthard.api.dao;
+package com.robertnorthard.api.layer.persistence.dao;
 
 import java.util.List;
 

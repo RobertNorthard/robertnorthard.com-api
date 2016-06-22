@@ -1,7 +1,6 @@
-package com.robertnorthard.api.controllers;
+package com.robertnorthard.api.layer.controllers;
 
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -9,10 +8,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.robertnorthard.api.dto.HttpResponse;
-import com.robertnorthard.api.dto.HttpResponseError;
-import com.robertnorthard.api.model.security.User;
-import com.robertnorthard.api.service.UserService;
+import com.robertnorthard.api.layer.persistence.dto.HttpResponse;
+import com.robertnorthard.api.layer.persistence.dto.HttpResponseError;
+import com.robertnorthard.api.layer.persistence.entities.User;
+import com.robertnorthard.api.layer.services.UserFacade;
+import com.robertnorthard.api.layer.services.UserService;
 
 /**
  * Expose Auth API
@@ -23,7 +23,7 @@ public class AuthController {
     
     private static final Logger LOGGER = Logger.getLogger(AuthController.class);
     
-    private UserService userService = new UserService();
+    private UserFacade userService = new UserService();
 
     @RequestMapping(value="/auth", method=RequestMethod.PUT)
     public HttpResponse<User> login(@RequestBody User user, HttpServletResponse response) {

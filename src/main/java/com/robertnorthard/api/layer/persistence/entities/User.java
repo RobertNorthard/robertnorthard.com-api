@@ -1,4 +1,4 @@
-package com.robertnorthard.api.model.security;
+package com.robertnorthard.api.layer.persistence.entities;
 
 import java.util.ArrayList;
 import java.util.List;
