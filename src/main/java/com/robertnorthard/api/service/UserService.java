@@ -7,10 +7,11 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import com.robertnorthard.api.dao.UserDAO;
 import com.robertnorthard.api.model.security.User;
+import com.robertnorthard.api.util.AuthenticationUtils;
 
 /**
  * Implementation for User Service
- * 
+ *
  * @author robertnorthard
  *
  */
@@ -22,9 +23,8 @@ public class UserService implements UserDetailsService {
 
     /**
      * Find user with specified name
-     * 
-     * @param username
-     *            user to find
+     *
+     * @param username user to find
      * @return user, null if user not found.
      */
     public User findByUsername(String username) {
@@ -33,30 +33,27 @@ public class UserService implements UserDetailsService {
 
     /**
      * Return user if authenticated else null
-     * 
-     * @param user
-     *            user to authenticate with
+     *
+     * @param user user to authenticate with
      * @return user if authenticated else null
      */
     public User authenticate(User user) {
         User usr = this.dao.findByUsername(user.getUsername());
 
-        if (usr != null && user.getPassword().equals(usr.getPassword())) {
+        if (usr != null && AuthenticationUtils.checkPassword(user.getPassword(), usr.getPassword())) {
             return usr;
         } else {
-            LOGGER.debug(String.format("Authentication failed for user- [%s]", user.getUsername()));
+            LOGGER.debug(String.format("Authentication failed for user - [%s]", user.getUsername()));
             return null;
         }
     }
 
     /**
      * Find user with specified username
-     * 
-     * @param username
-     *            username of user to find
+     *
+     * @param username username of user to find
      * @return user if exists
-     * @exception UsernameNotFoundException
-     *                user not found
+     * @exception UsernameNotFoundException user not found
      */
     public UserDetails loadUserByUsername(String username)
             throws UsernameNotFoundException {
