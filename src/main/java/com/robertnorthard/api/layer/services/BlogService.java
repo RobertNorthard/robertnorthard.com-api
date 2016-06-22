@@ -1,10 +1,10 @@
-package com.robertnorthard.api.service.blog;
+package com.robertnorthard.api.layer.services;
 
 import java.util.List;
 
-import com.robertnorthard.api.dao.PostDAO;
-import com.robertnorthard.api.dao.EntityDao;
-import com.robertnorthard.api.model.blog.Post;
+import com.robertnorthard.api.layer.persistence.dao.PostDAO;
+import com.robertnorthard.api.layer.persistence.dao.EntityDao;
+import com.robertnorthard.api.layer.persistence.entities.Post;
 
 /**
  * Implementation for Blog Service

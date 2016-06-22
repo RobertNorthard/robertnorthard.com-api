@@ -1,4 +1,4 @@
-package com.robertnorthard.api.model.blog;
+package com.robertnorthard.api.layer.persistence.entities;
 
 import java.util.Date;
 
@@ -6,7 +6,6 @@ import org.bson.types.ObjectId;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.robertnorthard.api.model.security.User;
 
 /**
  * This class represents a blog post

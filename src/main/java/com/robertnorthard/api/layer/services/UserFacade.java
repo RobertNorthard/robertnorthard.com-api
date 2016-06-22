@@ -1,6 +1,6 @@
-package com.robertnorthard.api.service;
+package com.robertnorthard.api.layer.services;
 
-import com.robertnorthard.api.model.security.User;
+import com.robertnorthard.api.layer.persistence.entities.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 /**

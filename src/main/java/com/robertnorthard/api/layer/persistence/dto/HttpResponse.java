@@ -1,4 +1,4 @@
-package com.robertnorthard.api.dto;
+package com.robertnorthard.api.layer.persistence.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;

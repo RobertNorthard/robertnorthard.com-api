@@ -1,11 +1,11 @@
-package com.robertnorthard.api.service;
+package com.robertnorthard.api.layer.services;
 
 import org.apache.log4j.Logger;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import com.robertnorthard.api.dao.UserDAO;
-import com.robertnorthard.api.model.security.User;
+import com.robertnorthard.api.layer.persistence.dao.UserDAO;
+import com.robertnorthard.api.layer.persistence.entities.User;
 import com.robertnorthard.api.util.AuthenticationUtils;
 
 /**

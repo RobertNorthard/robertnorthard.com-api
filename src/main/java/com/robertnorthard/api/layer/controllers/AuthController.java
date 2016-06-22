@@ -1,4 +1,4 @@
-package com.robertnorthard.api.controllers;
+package com.robertnorthard.api.layer.controllers;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.robertnorthard.api.dto.HttpResponse;
-import com.robertnorthard.api.dto.HttpResponseError;
-import com.robertnorthard.api.model.security.User;
-import com.robertnorthard.api.service.UserFacade;
-import com.robertnorthard.api.service.UserService;
+import com.robertnorthard.api.layer.persistence.dto.HttpResponse;
+import com.robertnorthard.api.layer.persistence.dto.HttpResponseError;
+import com.robertnorthard.api.layer.persistence.entities.User;
+import com.robertnorthard.api.layer.services.UserFacade;
+import com.robertnorthard.api.layer.services.UserService;
 
 /**
  * Expose Auth API

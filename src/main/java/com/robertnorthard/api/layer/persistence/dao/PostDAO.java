@@ -1,4 +1,4 @@
-package com.robertnorthard.api.dao;
+package com.robertnorthard.api.layer.persistence.dao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,7 @@ import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import com.robertnorthard.api.model.blog.Post;
+import com.robertnorthard.api.layer.persistence.entities.Post;
 import com.robertnorthard.api.util.DBConnection;
 
 import static com.mongodb.client.model.Filters.*;

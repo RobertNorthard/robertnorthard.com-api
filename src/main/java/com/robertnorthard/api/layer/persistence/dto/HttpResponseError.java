@@ -1,4 +1,4 @@
-package com.robertnorthard.api.dto;
+package com.robertnorthard.api.layer.persistence.dto;
 
 import java.util.Date;
 
