@@ -14,7 +14,6 @@ import com.robertnorthard.api.layer.persistence.entities.Post;
 import com.robertnorthard.api.layer.persistence.entities.User;
 import com.robertnorthard.api.layer.services.BlogFacade;
 import com.robertnorthard.api.layer.services.BlogService;
-import com.robertnorthard.api.layer.controllers.RESTController;
 import com.robertnorthard.api.layer.persistence.dto.HttpResponse;
 import com.robertnorthard.api.layer.persistence.dto.HttpResponseError;
 
