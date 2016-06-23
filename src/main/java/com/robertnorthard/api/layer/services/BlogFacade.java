@@ -39,6 +39,7 @@ public interface BlogFacade {
     
     /**
      * Update blog post
+     * @param id post id
      * @param post post to update
      */
     Post update(String id, Post post);
