@@ -17,6 +17,8 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
  * @author robertnorthard
  */
 public class User implements UserDetails {
+    
+    private static final long serialVersionUID = 6709175940535348876L;
 
     private String _id, username, password, displayName;
     private List<SimpleGrantedAuthority> authorities;
