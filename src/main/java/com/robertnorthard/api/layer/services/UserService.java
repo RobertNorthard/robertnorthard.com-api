@@ -18,8 +18,16 @@ public class UserService implements UserFacade {
 
     private static final Logger LOGGER = Logger.getLogger(UserService.class);
 
-    private UserDAO dao = new UserDAO();
+    private UserDAO dao;
 
+    public UserService(){
+         dao = new UserDAO();
+    }
+    
+    public UserService(UserDAO dao){
+        this.dao = dao;
+    }
+    
     /**
      * Find user with specified name
      *
