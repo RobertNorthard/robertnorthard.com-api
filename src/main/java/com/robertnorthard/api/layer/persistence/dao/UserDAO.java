@@ -4,10 +4,8 @@ import org.apache.log4j.Logger;
 import org.bson.Document;
 
 import com.google.gson.Gson;
-import com.mongodb.MongoClient;
 import com.mongodb.client.MongoDatabase;
 import com.robertnorthard.api.layer.persistence.entities.User;
-import com.robertnorthard.api.util.DBConnection;
 
 import static com.mongodb.client.model.Filters.*;
 
