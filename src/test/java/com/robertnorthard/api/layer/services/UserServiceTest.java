@@ -27,7 +27,7 @@ public class UserServiceTest {
      */
     @Test
     public void testFindByUsername1() {
-        String username = "not-a-real-userame";
+        String username = "not-a-real-username";
         when(dao.findByUsername(username)).thenReturn(null);
 
         User expResult = null;
