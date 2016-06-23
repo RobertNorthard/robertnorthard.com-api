@@ -14,8 +14,8 @@ import static org.mockito.Mockito.when;
  */
 public class UserServiceTest {
     
-    private UserDAO dao;
-    private UserService instance;
+    private final UserDAO dao;
+    private final UserService instance;
     
     public UserServiceTest() {
         dao = Mockito.mock(UserDAO.class);
