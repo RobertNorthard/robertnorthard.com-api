@@ -27,7 +27,6 @@ public class Post {
      * @param title
      * @param body
      * @param author
-     * @param timestamp
      */
     public Post(String title, String body, User author) {
         super();

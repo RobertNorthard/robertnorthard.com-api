@@ -29,19 +29,15 @@ public class User implements UserDetails {
     /**
      * Constructor for class user
      * 
-     * @param id
-     *            the user's id
-     * @param firstName
-     *            the user's firstname
-     * @param surname
-     *            the user's surname
+     * @param username user's username
+     * @param password user's password
      */
     public User(String username, String password) {
         super();
         this._id = new ObjectId().toString();
         this.username = username;
         this.password = password;
-        this.authorities = new ArrayList<SimpleGrantedAuthority>();
+        this.authorities = new ArrayList<>();
     }
     
     /**
@@ -63,6 +59,7 @@ public class User implements UserDetails {
      * @return the password
      */
     @JsonIgnore
+    @Override
     public String getPassword() {
         return password;
     }
@@ -81,6 +78,7 @@ public class User implements UserDetails {
      * @return the authorities
      */
     @JsonIgnore
+    @Override
     public List<SimpleGrantedAuthority> getAuthorities() {
         return this.authorities;
     }
@@ -127,6 +125,7 @@ public class User implements UserDetails {
      */
     @JsonSerialize
     @JsonProperty("username")
+    @Override
     public String getUsername() {
         return username;
     }
