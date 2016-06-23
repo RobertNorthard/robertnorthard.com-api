@@ -28,14 +28,20 @@ public class UserServiceTest {
     @Test
     public void testFindByUsername1() {
         String username = "not-a-real-userame";
-        
-        UserDAO dao = Mockito.mock(UserDAO.class);
-        
-        UserService instance = new UserService(dao);
         when(dao.findByUsername(username)).thenReturn(null);
 
         User expResult = null;
         User result = instance.findByUsername(username);
         assertEquals(expResult, result);
+    }
+    
+    /**
+     * Test of findByUsername method, of class UserService.
+     */
+    @Test(expected = IllegalArgumentException.class)
+    public void testFindByUsername2() {
+        String username = null;
+        User result = instance.findByUsername(username);
+        fail("Expected illegal argument exception");
     }
 }

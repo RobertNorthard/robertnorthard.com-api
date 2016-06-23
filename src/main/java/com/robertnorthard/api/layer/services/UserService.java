@@ -20,14 +20,14 @@ public class UserService implements UserFacade {
 
     private UserDAO dao;
 
-    public UserService(){
-         dao = new UserDAO();
+    public UserService() {
+        dao = new UserDAO();
     }
-    
-    public UserService(UserDAO dao){
+
+    public UserService(UserDAO dao) {
         this.dao = dao;
     }
-    
+
     /**
      * Find user with specified name
      *
@@ -35,7 +35,11 @@ public class UserService implements UserFacade {
      * @return user, null if user not found.
      */
     public User findByUsername(String username) {
-        return this.dao.findByUsername(username);
+        if (username == null) {
+            throw new IllegalArgumentException("Username cannot be null");
+        } else {
+            return this.dao.findByUsername(username);
+        }
     }
 
     /**
